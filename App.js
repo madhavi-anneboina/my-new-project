@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View ,TextInput} from 'react-native';
 
 
 export default function App() {
@@ -13,6 +13,9 @@ export default function App() {
       <Text>my name is {name}</Text>
       <StatusBar style="auto" />
       <Button onclick={clickHandler}> clike me </Button>
+      <TextInput 
+       style={{borderColor:'grey',height:40,borderWidth:1}}
+       name="username" placeholder="e.g john"/>
     </View>
   );
 }
