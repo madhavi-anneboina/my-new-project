@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
 import  Header  from './components/header';
 import TodoItem from './components/todoItem';
+import AddTodo from './components/addTodo';
 import { Button, StyleSheet, Text, View ,TextInput,ScrollView,FlatList } from 'react-native';
 
 
@@ -20,11 +21,20 @@ const pressHandler = (key) =>{
   })
 
 }
+const submitHandler = (text) =>{
+  setData((previousData) =>{
+    return [
+      {text:text,key:Math.random().toString()},
+      ...previousData
+    ]
+  })
+}
  
   return (
     <View style={styles.container}>
     <Header />
      <View style={styles.content}>
+         <AddTodo  submitHandler={submitHandler}/>
        <View style={styles.list}>
            <FlatList
            data={data}
@@ -49,7 +59,7 @@ const styles = StyleSheet.create({
   content:{
     padding:40
   },
-  List : {
+  list : {
     marginTop : 20
   }
 
