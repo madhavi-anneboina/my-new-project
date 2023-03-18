@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
 import  Header  from './components/header';
+import TodoItem from './components/todoItem';
 import { Button, StyleSheet, Text, View ,TextInput,ScrollView,FlatList } from 'react-native';
 
 
@@ -12,7 +13,13 @@ export default function App() {
     {text :'buy pencil', key:4},
     {text :'buy box', key:5}
 ])
-  
+
+const pressHandler = (key) =>{
+  setData((previousData) =>{
+    return previousData.filter(item=> item.key != key)
+  })
+
+}
  
   return (
     <View style={styles.container}>
@@ -22,10 +29,11 @@ export default function App() {
            <FlatList
            data={data}
            renderItem= {({item})=>(
-            <Text>{item.text}</Text>
+             <TodoItem  item={item} pressHandler={pressHandler}/>
            )}
             />
        </View>
+      
      </View>
     </View>
   );
