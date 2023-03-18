@@ -1,28 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { Button, StyleSheet, Text, View ,TextInput,ScrollView} from 'react-native';
+import  Header  from './components/header';
+import { Button, StyleSheet, Text, View ,TextInput,ScrollView,FlatList } from 'react-native';
 
 
 export default function App() {
-  const [name, setName] = useState([
-  {name : 'madhavi', key:1 },
-  {name : 'shalini', key:2 },
-  {name : 'kamini', key:3 },
-  {name : 'ramini', key:4 },
-  {name : 'jomini', key:5 },
-  {name : 'pumini', key:6 },
-  {name : 'tamini', key:7},
-  ])
+  const [data, setData] = useState([
+    {text :'buy coffe', key:1},
+    {text :'buy book', key:2},
+    {text :'buy pen', key:3},
+    {text :'buy pencil', key:4},
+    {text :'buy box', key:5}
+])
+  
  
   return (
     <View style={styles.container}>
-      <Text>my name is {name}</Text>
-      {people.map(name=>{
-        return (
-      <li key={index}>
-        {name.name}
-      </li>)})}
-      
+    <Header />
+     <View style={styles.content}>
+       <View style={styles.list}>
+           <FlatList
+           data={data}
+           renderItem= {({item})=>(
+            <Text>{item.text}</Text>
+           )}
+            />
+       </View>
+     </View>
     </View>
   );
 }
@@ -34,4 +38,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  content:{
+    padding:40
+  },
+  List : {
+    marginTop : 20
+  }
+
 });
