@@ -1,21 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { Button, StyleSheet, Text, View ,TextInput} from 'react-native';
+import { Button, StyleSheet, Text, View ,TextInput,ScrollView} from 'react-native';
 
 
 export default function App() {
-  const [name, setName] = useState('madhavi')
-  const clickHandler = e =>{
-    setName('ramani')
-  }
+  const [name, setName] = useState([
+  {name : 'madhavi', key:1 },
+  {name : 'shalini', key:2 },
+  {name : 'kamini', key:3 },
+  {name : 'ramini', key:4 },
+  {name : 'jomini', key:5 },
+  {name : 'pumini', key:6 },
+  {name : 'tamini', key:7},
+  ])
+ 
   return (
     <View style={styles.container}>
       <Text>my name is {name}</Text>
-      <StatusBar style="auto" />
-      <Button onclick={clickHandler}> clike me </Button>
-      <TextInput 
-       style={{borderColor:'grey',height:40,borderWidth:1}}
-       name="username" placeholder="e.g john"/>
+      {people.map(name=>{
+        return (
+      <li key={index}>
+        {name.name}
+      </li>)})}
+      
     </View>
   );
 }
