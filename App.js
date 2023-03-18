@@ -3,7 +3,7 @@ import React,{useState} from 'react';
 import  Header  from './components/header';
 import TodoItem from './components/todoItem';
 import AddTodo from './components/addTodo';
-import { Button, StyleSheet, Text, View ,TextInput,ScrollView,FlatList } from 'react-native';
+import { Button, StyleSheet, Text, View ,TextInput,ScrollView,FlatList,Alert } from 'react-native';
 
 
 export default function App() {
@@ -22,12 +22,20 @@ const pressHandler = (key) =>{
 
 }
 const submitHandler = (text) =>{
-  setData((previousData) =>{
-    return [
-      {text:text,key:Math.random().toString()},
-      ...previousData
-    ]
-  })
+
+  if (text.length > 3) {
+    setData((previousData) =>{
+      return [
+        {text:text,key:Math.random().toString()},
+        ...previousData
+      ]
+    })
+  } else {
+  Alert.alert('oops','Todos must be over 3 chart long'),[
+    {text : 'unserstood',onPress: ()=> console.log('alert closed')}
+  ]
+  }
+ 
 }
  
   return (
